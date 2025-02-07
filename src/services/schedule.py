@@ -65,7 +65,7 @@ def optimize_schedule(request: LogisticsRequest) -> dict:
     elif objective == 'cost':
         if not any(t.cost_per_hour is not None and t.cost_per_hour > 0 for t in tasks):
             return {"error": "Cost objective requires tasks with cost_per_hour"}
-        scale = 100  # scale dollars to cents
+        scale = 100  
         cost_terms = [
             (end_times[t.id] - start_times[t.id]) * int(t.cost_per_hour * scale)
             for t in tasks if t.cost_per_hour is not None and t.cost_per_hour > 0

@@ -20,7 +20,7 @@ from langchain.agents import Tool
 
 constraint_analyzer = Tool(
     name="Constraint Analyzer",
-    func=lambda constraints: llm.predict(f"Identify potential issues in: {constraints}"),
+    func = lambda constraints: llm.predict(f"Identify potential issues in: {constraints}"),
     description="Analyzes production constraints"
 )
 from fastapi import HTTPException

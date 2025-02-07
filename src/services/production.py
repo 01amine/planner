@@ -17,10 +17,10 @@ class ProductionScheduler:
         """
         Generates an optimized production schedule and provides a natural language explanation.
         """
-        # Integrate with optimization engine
+        
         optimized_plan = await self._optimize_schedule()
 
-        # Use LangChain for explanations
+        
         return {
             "schedule": optimized_plan,
             "explanation": self._generate_narrative(optimized_plan),
@@ -49,10 +49,10 @@ class ProductionScheduler:
         """
         Optimizes the production schedule using linear programming (PuLP).
         """
-        # Define the optimization problem
+        
         problem = pulp.LpProblem("Production_Scheduling", pulp.LpMinimize)
 
-        # Example: Define decision variables
+        
         products = [d.product_id for d in self.request.demand]
         machines = [r.machine_id for r in self.request.resources]
 

@@ -28,7 +28,7 @@ def optimize_schedule(request: LogisticsRequest) -> dict:
         start_times[task.id] = start_var
         end_times[task.id] = end_var
 
-    # Add dependency constraints
+    
     for task in tasks:
         for dep_id in task.dependencies:
             dep_task = next((t for t in tasks if t.id == dep_id), None)
@@ -37,7 +37,7 @@ def optimize_schedule(request: LogisticsRequest) -> dict:
             transit_time = transit_matrix.get(dep_task.location, {}).get(task.location, 0)
             model.Add(start_times[task.id] >= end_times[dep_id] + transit_time)
 
-    # Resource constraints
+   
     for resource, capacity in resource_pool.items():
         intervals = []
         demands = []
@@ -55,7 +55,7 @@ def optimize_schedule(request: LogisticsRequest) -> dict:
         if intervals:
             model.AddCumulative(intervals, demands, capacity)
 
-    # Objective setup
+    
     obj_var = model.NewIntVar(0, max_time, 'makespan')
     model.AddMaxEquality(obj_var, [end_times[t.id] for t in tasks])
     if objective == 'makespan':
@@ -75,7 +75,7 @@ def optimize_schedule(request: LogisticsRequest) -> dict:
     else:
         return {"error": "Invalid objective specified"}
 
-    # Vehicle assignment constraints
+    
     num_vehicles = len(request.vehicles)
     vehicle_assignment = {task.id: model.NewIntVar(0, num_vehicles - 1, f"vehicle_{task.id}") for task in tasks}
     vehicle_intervals = {v: [] for v in range(num_vehicles)}

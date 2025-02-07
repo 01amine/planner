@@ -1,6 +1,4 @@
 from fastapi.middleware.cors import CORSMiddleware
-from src.configs.env import *
-from src.configs.cors import *
 
 def configCORS (app):
     if inProd:

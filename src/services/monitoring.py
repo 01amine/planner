@@ -1,6 +1,7 @@
 from database import SessionLocal
 from models import InventoryItem
-from graph.stock_graph import workflow, InventoryState
+from stock_graph import workflow, InventoryState
+from src.services.alerts import send_alert
 
 def monitor_stock():
     db = SessionLocal()

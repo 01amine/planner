@@ -23,5 +23,5 @@ FastAPI
 Installation
 
 Clone the repository:
-git clone https://github.com/your-username/ai-supply-chain-planner.git
+git clone https://github.com/01amine/ai-supply-chain-planner.git
 cd ai-supply-chain-planner
